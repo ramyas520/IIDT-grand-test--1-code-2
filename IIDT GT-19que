@@ -1,0 +1,30 @@
+const [items, setItems] = useState([]);
+
+const handleDecrease = (id) => {
+    setItems((prevState) =>
+      prevState.map(
+        (item) =>
+          item.id === id
+            ? item.qty !== 1
+              ? { ...item, qty: item.qty - 1 }
+              : item.id !== id
+            : item // !id
+      )
+    );
+  };
+
+{items?.map((item) => {
+            return (
+              <div
+                key={item.id}
+              >
+                <div onClick={() => handleDecrease(item.id)}>-</div>
+                <div>{item.title}</div>
+                <div> ${item.price * item.qty}</div>
+                <div>{item.qty}</div>
+              
+              </div>
+            );
+          })}
+
+In my handleDecrease function, I check if the item quantity is !==1, then
